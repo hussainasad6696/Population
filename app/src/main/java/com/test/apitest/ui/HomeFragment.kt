@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.test.apitest.MainActivity
@@ -33,9 +35,20 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        backPressCallBack()
         initViews()
 
         return binding?.root
+    }
+
+    private fun backPressCallBack() {
+        val callBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (findNavController().previousBackStackEntry?.destination?.id == R.id.splachFragment)
+                    requireActivity().finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callBack)
     }
 
     private fun initViews() {
@@ -43,8 +56,10 @@ class HomeFragment : Fragment() {
         adapter = PopulationAdapter()
         binding?.populationDataRecyclerView?.adapter = this.adapter
 
-        viewModel = ViewModelProvider(this,
-            PopulationViewModelFactory(PopulationRepository(ApiService.retrofitInstance()!!),
+        viewModel = ViewModelProvider(
+            this,
+            PopulationViewModelFactory(
+                PopulationRepository(ApiService.retrofitInstance()!!),
                 NetworkStatusTracker(requireContext())
             )
         )[PopulationViewModel::class.java]
@@ -55,8 +70,7 @@ class HomeFragment : Fragment() {
             if (it) {
                 binding?.animationView?.visibility = View.GONE
                 changeVisibility(View.VISIBLE)
-            }
-            else {
+            } else {
                 binding?.animationView?.visibility = View.VISIBLE
                 changeVisibility(View.GONE)
             }
@@ -73,14 +87,13 @@ class HomeFragment : Fragment() {
         }
 
         viewModel?.state?.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 PopulationViewModel.NetState.Error -> {
                     binding?.noInternet?.visibility = View.VISIBLE
                     changeVisibility(View.GONE)
                 }
                 PopulationViewModel.NetState.Fetched -> {
                     binding?.noInternet?.visibility = View.GONE
-                    changeVisibility(View.VISIBLE)
                     viewModel?.usPopulation()
                 }
             }
