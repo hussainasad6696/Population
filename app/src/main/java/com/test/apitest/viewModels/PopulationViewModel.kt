@@ -11,12 +11,15 @@ import com.test.apitest.utils.NetworkStatusTracker
 import com.test.apitest.utils.map
 import kotlinx.coroutines.*
 
-class PopulationViewModel constructor(private val populationRepository: PopulationRepository,private val networkStatusTracker: NetworkStatusTracker): ViewModel() {
+class PopulationViewModel constructor(
+    private val populationRepository: PopulationRepository,
+    private val networkStatusTracker: NetworkStatusTracker
+) : ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
     val usPopulations = MutableLiveData<Populations>()
     val dataAvailable = MutableLiveData<Boolean>()
-    private val coroutineExceptionHandler =  CoroutineExceptionHandler { _, throwable ->
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         throwable.localizedMessage?.let { error(it) }
     }
     private var job: Job? = null
@@ -29,13 +32,11 @@ class PopulationViewModel constructor(private val populationRepository: Populati
 
     fun usPopulation() {
         job = viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            populationRepository.usPopulation("Nation","Population").also { response ->
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        usPopulations.postValue(response.body())
-                        dataAvailable.postValue(true)
-                    } else error(response.message())
-                }
+            populationRepository.usPopulation("Nation", "Population").also { response ->
+                if (response.isSuccessful) {
+                    usPopulations.postValue(response.body())
+                    dataAvailable.postValue(true)
+                } else error(response.message())
             }
         }
     }
