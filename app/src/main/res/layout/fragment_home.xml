@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    tools:context=".ui.HomeFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/count_population"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barLayout"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/find_people" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/noInternet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barLayout"
+        app:lottie_autoPlay="true"
+        android:visibility="gone"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/no_internet" />
+
+    <TextView
+        android:id="@+id/sourceNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/source_name"
+        android:text="@string/source_name"
+        android:textColor="@color/text_heading_color"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barLayout" />
+
+    <TextView
+        android:id="@+id/sourceName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:background="@drawable/text_data_background"
+        android:contentDescription="@string/source_name"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/source_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/sourceNameTxt"
+        app:layout_constraintTop_toBottomOf="@id/sourceNameTxt" />
+
+    <TextView
+        android:id="@+id/sourceDescriptionTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/source_description"
+        android:text="@string/source_description"
+        android:textColor="@color/text_heading_color"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sourceName" />
+
+    <TextView
+        android:id="@+id/sourceDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:background="@drawable/text_data_background"
+        android:contentDescription="@string/source_description"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/source_description"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/sourceDescriptionTxt"
+        app:layout_constraintTop_toBottomOf="@id/sourceDescriptionTxt" />
+
+    <TextView
+        android:id="@+id/dataSetNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/dataset_name"
+        android:text="@string/dataset_name"
+        android:textColor="@color/text_heading_color"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sourceDescription" />
+
+    <TextView
+        android:id="@+id/dataSetName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:background="@drawable/text_data_background"
+        android:contentDescription="@string/dataset_name"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/dataset_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/dataSetNameTxt"
+        app:layout_constraintTop_toBottomOf="@id/dataSetNameTxt" />
+
+    <TextView
+        android:id="@+id/populationTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/population_data"
+        android:text="@string/population_data"
+        android:textColor="@color/text_heading_color"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dataSetName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/populationDataRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/populationTxt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

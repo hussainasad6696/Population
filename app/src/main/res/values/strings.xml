@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ApiTest</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="count_population">Count Population</string>
+    <string name="source_name">Source Name</string>
+    <string name="source_description">Source Description</string>
+    <string name="dataset_name">Dataset Name</string>
+    <string name="population_data">Population Data</string>
+    <string name="id_nation">ID Nation</string>
+    <string name="_divider">:</string>
+    <string name="nation">Nation</string>
+    <string name="id_year">ID Year</string>
+    <string name="year">Year</string>
+    <string name="population">Population</string>
+    <string name="slug_nation">Slug Nation</string>
+</resources>
